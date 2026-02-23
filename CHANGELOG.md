@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v0.2.0...v0.3.0) (2026-02-23)
+
+
+### Features
+
+* add functions for applying DP directly to a numpy array or list ([9c61a58](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/9c61a58d7442b1b06819c1d43128ad466362fcd0))
+* add functions for applying DP directly to a numpy array or list ([d18ea15](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/d18ea1581c1a29572812265deeb483301d6ad1aa))
+
 ## [0.2.0](https://github.com/judithspd/trasgoDP/compare/v0.1.0...v0.2.0) (2026-02-10)
 
 
