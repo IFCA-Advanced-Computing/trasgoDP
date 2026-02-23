@@ -20,6 +20,7 @@ import numpy as np
 import pandas as pd
 import scipy
 import copy
+import typing
 
 
 def dp_randomized_response_binary(
@@ -92,6 +93,58 @@ def dp_randomized_response_binary(
     return df
 
 
+def dp_randomized_response_binary_array(
+    data: typing.Union[list, np.ndarray],
+    epsilon: float,
+    positive_label=None,
+) -> np.ndarray:
+    """Apply the binary randomized response mechanism to a list or numpy array.
+
+    :param data: dataset with the data under study.
+    :type data: list or numpy array
+
+    :param epsilon: privacy budget.
+    :type epsilon: float
+
+    :param positive_label: value to be assigned as 1. If None, it is assigned to
+        first value.
+    :type positive_label: string
+
+    :return: array with the data transformed applying the binary RR mechanism.
+    :rtype: numpy array.
+    """
+    if isinstance(data, list):
+        data = np.array(data)
+    categories = np.unique(data)
+    if len(categories) != 2:
+        raise ValueError("Only binary attributes are supported.")
+
+    if epsilon <= 0:
+        raise ValueError("The privacy budget must be greater than 0.")
+
+    if positive_label is None:
+        positive_label = categories[0]
+        negative_label = categories[1]
+    else:
+        if positive_label not in categories:
+            raise ValueError("Positive label is not a value in the column.")
+        negative_label = categories[categories != positive_label][0]
+
+    data_binary = [1 if v == positive_label else 0 for v in data]
+
+    p = np.exp(epsilon) / (np.exp(epsilon) + 1)
+    _dp_array = []
+    for value in data_binary:
+        if np.random.rand() < p:
+            _dp_array.append(value)
+        else:
+            _dp_array.append(int(np.abs(value - 1)))
+
+    dp_array = [positive_label if v == 1 else negative_label for v in _dp_array]
+
+    return dp_array
+
+
 def dp_randomized_response_kary(
     df: pd.DataFrame,
     column: str,
@@ -147,3 +200,46 @@ def dp_randomized_response_kary(
         df[column] = dp_column
 
     return df
+
+
+def dp_randomized_response_kary_array(
+    data: typing.Union[list, np.ndarray],
+    epsilon: float,
+) -> np.ndarray:
+    """Apply the k-ary Randomized Response mechanism to a list or numpy array.
+
+    :param data: dataset with the data under study.
+    :type data: list or numpy array
+
+    :param epsilon: privacy budget.
+    :type epsilon: float
+
+    :param positive_label: value to be assigned as 1. If None, it is assigned to
+        first value.
+    :type positive_label: string
+
+    :return: array with the data transformed applying the k-ary RR mechanism.
+    :rtype: numpy array.
+    """
+    if isinstance(data, list):
+        data = np.array(data)
+
+    categories = np.unique(data)
+    k = len(categories)
+    if k < 3:
+        raise ValueError("Three or more categories are required.")
+
+    if epsilon <= 0:
+        raise ValueError("The privacy budget must be greater than 0.")
+
+    p_b = k / (np.exp(epsilon) + k - 1)
+    dp_array = []
+    for value in data:
+        b = scipy.stats.bernoulli.rvs(p_b)
+        if b == 0:
+            dp_array.append(value)
+        else:
+            id_k = scipy.stats.uniform.rvs(loc=0, scale=k)
+            dp_array.append(categories[int(id_k)])
+
+    return dp_array

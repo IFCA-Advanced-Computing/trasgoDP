@@ -19,6 +19,7 @@
 import numpy as np
 import pandas as pd
 import copy
+import typing
 
 
 def dp_clip_laplace(
@@ -91,3 +92,60 @@ def dp_clip_laplace(
         df[column] = dp_column
 
     return df
+
+
+def dp_clip_laplace_array(
+    data: typing.Union[typing.List, np.ndarray],
+    epsilon: float,
+    lower_bound=None,
+    upper_bound=None,
+) -> np.ndarray:
+    """Apply the Laplace mechanism to a list or numpy array.
+
+    :param data: dataset with the data under study.
+    :type data: list or numpy array
+
+    :param epsilon: privacy budget.
+    :type epsilon: float
+
+    :param lower_bound: lower bound for clipping and calculating the sensitivity.
+    :type lower_bound: float
+
+    :param upper_bound: upper bound for clipping and calculating the sensitivity.
+    :type upper_bound: float
+
+    :return: array with the data transformed applying the Laplace mechanism.
+    :rtype: numpy array.
+    """
+    if epsilon <= 0:
+        raise ValueError("The privacy budget must be greater than 0.")
+
+    if isinstance(data, list):
+        data = np.array(data)
+
+    if np.issubdtype(data.dtype, np.integer):
+        data = data.astype(int)
+    elif np.issubdtype(data.dtype, np.floating):
+        data = data.astype(float)
+    else:
+        raise ValueError("Type of the column not allowed for the Laplace mechanism.")
+
+    if lower_bound is None:
+        lower_bound = min(data)
+    if upper_bound is None:
+        upper_bound = max(data)
+
+    clipped = np.clip(data, lower_bound, upper_bound)
+
+    sensitivity = upper_bound - lower_bound
+    scale = sensitivity / epsilon
+    noise = np.random.laplace(0, scale, size=len(clipped))
+
+    dp_data = clipped + noise
+
+    if np.issubdtype(data.dtype, np.integer):
+        dp_data = np.round(dp_data, 0).astype(int)
+
+    dp_data = np.clip(dp_data, lower_bound, upper_bound)
+
+    return dp_data

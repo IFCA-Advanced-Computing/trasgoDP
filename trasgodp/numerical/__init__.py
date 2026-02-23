@@ -14,7 +14,12 @@
 
 """DP mechanisms for numerical columns with clipped results."""
 
-from ._gaussian import dp_clip_gaussian
-from ._laplace import dp_clip_laplace
+from ._gaussian import dp_clip_gaussian, dp_clip_gaussian_array
+from ._laplace import dp_clip_laplace, dp_clip_laplace_array
 
-__all__ = ["dp_clip_gaussian", "dp_clip_laplace"]
+__all__ = [
+    "dp_clip_gaussian",
+    "dp_clip_laplace_array",
+    "dp_clip_laplace",
+    "dp_clip_gaussian_array",
+]
