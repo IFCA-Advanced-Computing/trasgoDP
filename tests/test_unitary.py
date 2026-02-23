@@ -388,6 +388,113 @@ class TestInvalidValues(unittest.TestCase):
             dict,
         )
 
+    def test_laplace_array_epsilon(self):
+        data = np.random.rand(100)
+        epsilon = -1
+        with self.assertRaises(ValueError):
+            numerical.dp_clip_laplace_array(data, epsilon)
+
+    def test_laplace_array_type(self):
+        data = self.data["education"].values
+        epsilon = 1
+        with self.assertRaises(ValueError):
+            numerical.dp_clip_laplace_array(data, epsilon)
+
+    def test_laplace_array_output(self):
+        data = self.data["age"].values
+        epsilon = 1
+        dp_data = numerical.dp_clip_laplace_array(data, epsilon)
+        assert isinstance(dp_data, np.ndarray)
+
+    def test_laplace_array_range(self):
+        data = self.data["age"].values
+        epsilon = 1
+        dp_data = numerical.dp_clip_laplace_array(data, epsilon)
+        assert max(dp_data) <= max(data) and min(dp_data) >= min(data)
+
+    def test_gaussian_array_epsilon(self):
+        data = np.random.rand(100)
+        epsilon = -1
+        with self.assertRaises(ValueError):
+            numerical.dp_clip_gaussian_array(data, epsilon)
+
+    def test_gaussian_array_delta(self):
+        data = np.random.rand(100)
+        epsilon = 1
+        delta = 2
+        with self.assertRaises(ValueError):
+            numerical.dp_clip_gaussian_array(data, epsilon, delta)
+
+    def test_gaussian_array_delta_neg(self):
+        data = np.random.rand(100)
+        epsilon = 1
+        delta = -1
+        with self.assertRaises(ValueError):
+            numerical.dp_clip_gaussian_array(data, epsilon, delta)
+
+    def test_gaussian_array_type(self):
+        data = self.data["education"].values
+        epsilon = 1
+        delta = 1e-5
+        with self.assertRaises(ValueError):
+            numerical.dp_clip_gaussian_array(data, epsilon, delta)
+
+    def test_gaussian_array_output(self):
+        data = self.data["age"].values
+        epsilon = 1
+        delta = 1e-5
+        dp_data = numerical.dp_clip_gaussian_array(data, epsilon, delta)
+        assert isinstance(dp_data, np.ndarray)
+
+    def test_gaussian_array_range(self):
+        data = self.data["age"].values
+        epsilon = 1
+        delta = 1e-5
+        dp_data = numerical.dp_clip_gaussian_array(data, epsilon, delta)
+        assert max(dp_data) <= max(data) and min(dp_data) >= min(data)
+
+    def test_binary_rr_array_epsilon(self):
+        data = self.data["sex"].values
+        epsilon = -1
+        with self.assertRaises(ValueError):
+            categorical.dp_randomized_response_binary_array(data, epsilon)
+
+    def test_binary_rr_array_type(self):
+        data = self.data["age"].values
+        epsilon = 1
+        with self.assertRaises(ValueError):
+            categorical.dp_randomized_response_binary_array(data, epsilon)
+
+    def test_binary_rr_array_binary(self):
+        data = self.data["age"].values
+        epsilon = 1
+        with self.assertRaises(ValueError):
+            categorical.dp_randomized_response_binary_array(data, epsilon)
+
+    def test_binary_rr_array_output(self):
+        data = self.data["sex"].values
+        epsilon = 1
+        dp_data = categorical.dp_randomized_response_binary_array(data, epsilon)
+        assert isinstance(dp_data, np.ndarray)
+
+    def test_binary_rr_array_label(self):
+        data = self.data["sex"].values
+        epsilon = 1
+        positive_label = "mujer"
+        with self.assertRaises(ValueError):
+            categorical.dp_randomized_response_binary_array(
+                data, epsilon, positive_label=positive_label
+            )
+
+    def test_binary_rr_array_output_label(self):
+        data = self.data["sex"].values
+        epsilon = 1
+        dp_data = categorical.dp_randomized_response_binary_array(data, epsilon)
+        assert (
+            np.unique(dp_data)[0] == np.unique(data)[0]
+            and np.unique(dp_data)[1] == np.unique(data)[1]
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
