@@ -57,6 +57,9 @@ def dp_randomized_response_binary(
     if column not in df.keys():
         raise ValueError("Column: {column} not in the dataframe.")
 
+    if np.issubdtype(df[column].dtype, np.number):
+        raise ValueError(f"The column {column} must be categorical.")
+
     categories = np.unique(df[column].values)
     if len(categories) != 2:
         raise ValueError("Only binary attributes are supported.")
@@ -115,6 +118,7 @@ def dp_randomized_response_binary_array(
     """
     if isinstance(data, list):
         data = np.array(data)
+
     categories = np.unique(data)
     if len(categories) != 2:
         raise ValueError("Only binary attributes are supported.")
@@ -142,7 +146,7 @@ def dp_randomized_response_binary_array(
 
     dp_array = [positive_label if v == 1 else negative_label for v in _dp_array]
 
-    return dp_array
+    return np.array(dp_array)
 
 
 def dp_randomized_response_kary(
@@ -173,6 +177,9 @@ def dp_randomized_response_kary(
     df = copy.deepcopy(df)
     if column not in df.keys():
         raise ValueError("Column: {column} not in the dataframe.")
+
+    if np.issubdtype(df[column].dtype, np.number):
+        raise ValueError(f"The column {column} must be categorical.")
 
     categories = np.unique(df[column].values)
     k = len(categories)
@@ -242,4 +249,4 @@ def dp_randomized_response_kary_array(
             id_k = scipy.stats.uniform.rvs(loc=0, scale=k)
             dp_array.append(categories[int(id_k)])
 
-    return dp_array
+    return np.array(dp_array)
