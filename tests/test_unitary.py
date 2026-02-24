@@ -210,6 +210,12 @@ class TestInvalidValues(unittest.TestCase):
         )
         assert isinstance(data_dp, pd.DataFrame)
 
+    def test_numerical_rr_binary(self):
+        epsilon = 1
+        colum = 'age'
+        with self.assertRaises(ValueError): 
+            categorical.dp_randomized_response_binary(self.data, colum, epsilon)
+
     def test_output_rr_binary_newcolumn_len(self):
         epsilon = 1
         column = "sex"
@@ -486,6 +492,12 @@ class TestInvalidValues(unittest.TestCase):
                 data, epsilon, positive_label=positive_label
             )
 
+    def test_binary_array_type(self):
+        data = self.data["age"].values
+        epsilon = 1
+        with self.assertRaises(ValueError):
+            categorical.dp_randomized_response_binary_array(data, epsilon)
+
     def test_binary_rr_array_output_label(self):
         data = self.data["sex"].values
         epsilon = 1
@@ -494,6 +506,26 @@ class TestInvalidValues(unittest.TestCase):
             np.unique(dp_data)[0] == np.unique(data)[0]
             and np.unique(dp_data)[1] == np.unique(data)[1]
         )
+
+    def test_kary_array_epsilon(self):
+        data = self.data["workclass"].values
+        epsilon = -1
+        with self.assertRaises(ValueError):
+            categorical.dp_randomized_response_kary_array(data, epsilon)
+
+    def test_kary_array_type(self):
+        data = self.data["age"].values
+        epsilon = 1
+        with self.assertRaises(ValueError):
+            categorical.dp_randomized_response_kary_array(data, epsilon)
+    
+    def test_kary_array_output(self):
+        data = self.data["workclass"].values
+        epsilon = 1
+        dp_data = categorical.dp_randomized_response_kary_array(data, epsilon)
+        assert isinstance(dp_data, np.ndarray)  
+
+    
 
 
 if __name__ == "__main__":
