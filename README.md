@@ -1,11 +1,11 @@
 <img align="center" width="500" src="https://raw.githubusercontent.com/judithspd/trasgodp/main/images/logo_trasgodp.png">
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://github.com/judithspd/trasgodp/blob/main/LICENSE) 
-[![codecov](https://codecov.io/gh/judithspd/trasgodp/graph/badge.svg?token=RGO77BTPHZ)](https://codecov.io/gh/judithspd/trasgodp)
+[![codecov](https://codecov.io/gh/IFCA-Advanced-Computing/trasgodp/graph/badge.svg?token=RGO77BTPHZ)](https://codecov.io/gh/IFCA-Advanced-Computing/trasgodp)
 [![PyPI](https://img.shields.io/pypi/v/trasgodp)](https://pypi.org/project/trasgoDP/)
 [![Documentation Status](https://readthedocs.org/projects/trasgodp/badge/?version=latest)](https://trasgodp.readthedocs.io/en/latest/?badge=latest)
-[![Publish Package in PyPI](https://github.com/judithspd/trasgodp/actions/workflows/pypi.yml/badge.svg)](https://github.com/judithspd/trasgodp/actions/workflows/pypi.yml)
-[![CI/CD Pipeline](https://github.com/judithspd/trasgodp/actions/workflows/cicd.yml/badge.svg)](https://github.com/judithspd/trasgodp/actions/workflows/cicd.yml)
+[![Publish Package in PyPI](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/pypi.yml/badge.svg)](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/pypi.yml)
+[![CI/CD Pipeline](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/cicd.yml/badge.svg)](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/cicd.yml)
 [![Code Coverage](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/.codecov.yml/badge.svg)](https://github.com/IFCA-Advanced-Computing/trasgoDP/actions/workflows/.codecov.yml)
 ![Python version](https://img.shields.io/badge/python-3.10|3.11|3.12|3.13|3.14-blue)
 
