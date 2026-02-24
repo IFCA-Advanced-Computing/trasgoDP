@@ -119,6 +119,9 @@ def dp_randomized_response_binary_array(
     if isinstance(data, list):
         data = np.array(data)
 
+    if np.issubdtype(data.dtype, np.number):
+        raise ValueError(f"The array must be categorical.")
+
     categories = np.unique(data)
     if len(categories) != 2:
         raise ValueError("Only binary attributes are supported.")
@@ -230,6 +233,9 @@ def dp_randomized_response_kary_array(
     """
     if isinstance(data, list):
         data = np.array(data)
+
+    if np.issubdtype(data.dtype, np.number):
+        raise ValueError(f"The array must be categorical.")
 
     categories = np.unique(data)
     k = len(categories)
