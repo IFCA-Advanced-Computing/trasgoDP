@@ -212,8 +212,8 @@ class TestInvalidValues(unittest.TestCase):
 
     def test_numerical_rr_binary(self):
         epsilon = 1
-        colum = 'age'
-        with self.assertRaises(ValueError): 
+        colum = "age"
+        with self.assertRaises(ValueError):
             categorical.dp_randomized_response_binary(self.data, colum, epsilon)
 
     def test_output_rr_binary_newcolumn_len(self):
@@ -518,14 +518,12 @@ class TestInvalidValues(unittest.TestCase):
         epsilon = 1
         with self.assertRaises(ValueError):
             categorical.dp_randomized_response_kary_array(data, epsilon)
-    
+
     def test_kary_array_output(self):
         data = self.data["workclass"].values
         epsilon = 1
         dp_data = categorical.dp_randomized_response_kary_array(data, epsilon)
-        assert isinstance(dp_data, np.ndarray)  
-
-    
+        assert isinstance(dp_data, np.ndarray)
 
 
 if __name__ == "__main__":
