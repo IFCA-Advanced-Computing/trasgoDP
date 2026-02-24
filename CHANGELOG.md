@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.1](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v0.3.0...v0.3.1) (2026-02-24)
+
+
+### Bug Fixes
+
+* fix array functions ([3c377bf](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/3c377bfb32ef1f32495988d1e0e166748b092aef))
+* refactor code ([98d2c80](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/98d2c80d3f95a953364fdf1cb9960d9757e77f63))
+* refactor code ([d3ea2a0](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/d3ea2a0b79b43bdfde0f6fbc00365945cd331c49))
+* update README badges ([5f306be](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/5f306be38e06e3c912ac6c8a715d52e1c3214578))
+
+
+### Documentation
+
+* fix Code Coverage badge link in README.md ([fecd4d8](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/fecd4d8b70515259dbe7a56da0d38a9ef8423736))
+
 ## [0.3.0](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v0.2.0...v0.3.0) (2026-02-23)
 
 
