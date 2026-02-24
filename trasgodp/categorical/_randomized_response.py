@@ -120,7 +120,7 @@ def dp_randomized_response_binary_array(
         data = np.array(data)
 
     if np.issubdtype(data.dtype, np.number):
-        raise ValueError(f"The array must be categorical.")
+        raise ValueError("The array must be categorical.")
 
     categories = np.unique(data)
     if len(categories) != 2:
@@ -235,7 +235,7 @@ def dp_randomized_response_kary_array(
         data = np.array(data)
 
     if np.issubdtype(data.dtype, np.number):
-        raise ValueError(f"The array must be categorical.")
+        raise ValueError("The array must be categorical.")
 
     categories = np.unique(data)
     k = len(categories)
