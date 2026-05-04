@@ -1,7 +1,7 @@
 numpy==2.2.6
 pandas==2.3.3
 typing_extensions==4.15.0
-matplotlib==3.10.8
+matplotlib==3.10.9
 scipy==1.15.3
 
 # docs
