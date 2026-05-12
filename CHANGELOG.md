@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.2](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v0.3.1...v0.3.2) (2026-05-12)
+
+
+### Bug Fixes
+
+* fix pip version in CI/CD ([b490cda](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/b490cdaee1b6686da9d6f376382674127e45d1b9))
+* update pip version in tox.ini ([8261481](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/8261481095eb3254efd474a5e14ca3fe3f1d7c16))
+* update tox.ini ([a35cf07](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/a35cf07e54fe9e8f1d534c3cbba173aa055c8fd5))
+
 ## [0.3.1](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v0.3.0...v0.3.1) (2026-02-24)
 
 
