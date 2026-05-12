@@ -39,7 +39,7 @@ typing_extensions = "4.15.0"
 
 
 [tool.poetry.group.dev.dependencies]
-tox = "4.53.1"
+tox = "4.54.0"
 
 
 [tool.poetry.group.test.dependencies]
