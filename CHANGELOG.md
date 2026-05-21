@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.3](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v0.3.2...v0.3.3) (2026-05-21)
+
+
+### Bug Fixes
+
+* change numpy version in pyproject.toml ([37e1e9e](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/37e1e9e141204670cc1981cb40096c8c7ed0f400))
+
+
+### Documentation
+
+* bump release version to 0.3.2 ([5c10606](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/5c1060676b5a84753d52d4116bb1247697f64c28))
+* bump release version to 0.3.3 ([aa1c9ba](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/aa1c9bacf1e5e29acf1cf5aa5214f6f18664e8e9))
+
 ## [0.3.2](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v0.3.1...v0.3.2) (2026-05-12)
 
 
