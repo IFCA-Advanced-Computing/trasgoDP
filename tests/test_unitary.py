@@ -1,10 +1,11 @@
+import os
 import unittest
-from trasgodp import numerical, categorical, metrics
+from trasgodp import numerical, categorical, geoindis, metrics
 import numpy as np
 import pandas as pd
 
 
-class TestInvalidValues(unittest.TestCase):
+class TestAdult(unittest.TestCase):
     data = pd.read_csv("./examples/adult.csv")
     data.columns = data.columns.str.strip()
     cols = [
@@ -524,6 +525,93 @@ class TestInvalidValues(unittest.TestCase):
         epsilon = 1
         dp_data = categorical.dp_randomized_response_kary_array(data, epsilon)
         assert isinstance(dp_data, np.ndarray)
+
+
+class TestGeoIndis(unittest.TestCase):
+    data = pd.read_csv("./examples/earthquake_data.csv")
+    column_lat = "latitude"
+    column_lon = "longitude"
+
+    def test_error_col_lat(self):
+        epsilon = 1
+        with self.assertRaises(ValueError):
+            geoindis.metric_privacy(self.data, "lat", "longitude", epsilon)
+
+    def test_error_col_lon(self):
+        epsilon = 1
+        with self.assertRaises(ValueError):
+            geoindis.metric_privacy(self.data, "latitude", "lon", epsilon)
+
+    def test_error_lat(self):
+        epsilon = 1
+        test_data = pd.DataFrame(
+            {"latitude": [134.05, 40.71], "longitude": [120.0, -74.00]}
+        )
+        with self.assertRaises(ValueError):
+            geoindis.metric_privacy(test_data, "latitude", "longitude", epsilon)
+
+    def test_error_lon(self):
+        epsilon = 1
+        test_data = pd.DataFrame(
+            {"latitude": [34.05, 40.71], "longitude": [200.0, -74.00]}
+        )
+        with self.assertRaises(ValueError):
+            geoindis.metric_privacy(test_data, "latitude", "longitude", epsilon)
+
+    def test_output(self):
+        epsilon = 1
+        data_dp = geoindis.metric_privacy(
+            self.data, self.column_lat, self.column_lon, epsilon
+        )
+        assert isinstance(data_dp, pd.DataFrame)
+
+    def test_output(self):
+        epsilon = 1
+        data_dp = geoindis.metric_privacy(
+            self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
+        )
+        assert isinstance(data_dp, pd.DataFrame)
+
+    def test_plot_map(self):
+        epsilon = 1
+        data_dp = geoindis.metric_privacy(
+            self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
+        )
+        geoindis.plot_metric_dp_map(
+            data_dp, self.column_lat, self.column_lat, save_file="test_map.html"
+        )
+        self.addCleanup(os.remove, "test_map.html")
+        assert os.path.exists("test_map.html")
+
+    def test_plot_map_error_lon(self):
+        epsilon = 1
+        data_dp = geoindis.metric_privacy(
+            self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
+        )
+        with self.assertRaises(ValueError):
+            geoindis.plot_metric_dp_map(
+                data_dp, self.column_lat, "lon", save_file="test_map.html"
+            )
+    
+    def test_plot_map_error_lat(self):
+        epsilon = 1
+        data_dp = geoindis.metric_privacy(
+            self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
+        )
+        with self.assertRaises(ValueError):
+            geoindis.plot_metric_dp_map(
+                data_dp, "lat", self.column_lon, save_file="test_map.html"
+            )
+    
+    def test_plot_map_error_file(self):
+        epsilon = 1
+        data_dp = geoindis.metric_privacy(
+            self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
+        )
+        with self.assertRaises(ValueError):
+            geoindis.plot_metric_dp_map(
+                data_dp, self.column_lat, self.column_lon, save_file="test_map.png"
+            )
 
 
 if __name__ == "__main__":
