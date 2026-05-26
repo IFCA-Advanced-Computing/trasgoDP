@@ -14,8 +14,9 @@
 
 """Metric privacy mechanisms for location data."""
 
-from ._geo_metric_privacy import metric_privacy
+from ._geo_metric_privacy import metric_privacy, plot_metric_dp_map
 
 __all__ = [
     "metric_privacy",
+    "plot_metric_dp_map"
 ]

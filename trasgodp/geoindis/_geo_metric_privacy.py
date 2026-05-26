@@ -44,6 +44,11 @@ def _geo_indistinguishability(lat, lon, epsilon, earth_radius_m=6_371_000):
     :return: perturbed longitude, perturbed latitude, and radius in meters.
     :rtype: tuple(float, float, float)
     """
+    if not (-90 <= lat <= 90):
+        raise ValueError(f"Latitude must be in [-90, 90], received {lat}.")
+    if not (-180 <= lon <= 180):
+        raise ValueError(f"Longitude must be in [-180, 180], received {lon}.")
+
     theta = np.random.uniform(0, 2 * np.pi)
 
     r = np.random.gamma(shape=2, scale=1.0 / epsilon)
@@ -95,6 +100,11 @@ def metric_privacy(
     """
     np.random.seed(seed)
     df = copy.deepcopy(df)
+    if column_lat not in df.columns:
+        raise ValueError(f"Column '{column_lat}' not found in DataFrame.")
+    if column_lon not in df.columns:
+        raise ValueError(f"Column '{column_lon}' not found in DataFrame.")
+
     unique_coords = df[[column_lat, column_lon]].drop_duplicates()
 
     unique_coords[["lat_dp", "lon_dp", "radius_m"]] = unique_coords.apply(
@@ -115,7 +125,7 @@ def metric_privacy(
     return df
 
 
-def plot_metric_dp_map(df_dp, column_lon, column_lat, save_file="metric_dp_map.html"):
+def plot_metric_dp_map(df_dp, column_lat, column_lon, save_file="metric_dp_map.html"):
     """Plot (and save) a map with the original and perturbed locations, and the radius.
 
     :param df_dp: DataFrame containing both the original and perturbed data.
@@ -135,6 +145,14 @@ def plot_metric_dp_map(df_dp, column_lon, column_lat, save_file="metric_dp_map.h
     :return: map.
     :rtype: folium.Map
     """
+    if not save_file.endswith(".html"):
+        raise ValueError(f"save_file must be a .html file, got {save_file}.")
+    
+    if column_lat not in df_dp.columns:
+        raise ValueError(f"Column '{column_lat}' not found in DataFrame.")
+    if column_lon not in df_dp.columns:
+        raise ValueError(f"Column '{column_lon}' not found in DataFrame.")
+    
     values = df_dp.drop_duplicates(subset=[column_lat, column_lon])
 
     center_lat = values[column_lat].mean()
