@@ -100,6 +100,9 @@ def metric_privacy(
     """
     np.random.seed(seed)
     df = copy.deepcopy(df)
+    if epsilon <= 0:
+        raise ValueError(f"Epsilon must be positive, received {epsilon}.")
+
     if column_lat not in df.columns:
         raise ValueError(f"Column '{column_lat}' not found in DataFrame.")
     if column_lon not in df.columns:
