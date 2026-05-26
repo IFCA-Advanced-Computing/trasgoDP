@@ -3,6 +3,7 @@ pandas==2.3.3
 typing_extensions==4.15.0
 matplotlib==3.10.9
 scipy==1.15.3
+folium==0.20.0
 
 # docs
 sphinx==8.1.3
