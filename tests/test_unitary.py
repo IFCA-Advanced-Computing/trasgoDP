@@ -532,6 +532,13 @@ class TestGeoIndis(unittest.TestCase):
     column_lat = "latitude"
     column_lon = "longitude"
 
+    def test_error_epsilon(self):
+        epsilon = -1
+        with self.assertRaises(ValueError):
+            geoindis.metric_privacy(
+                self.data, self.column_lat, self.column_lon, epsilon
+            )
+
     def test_error_col_lat(self):
         epsilon = 1
         with self.assertRaises(ValueError):
