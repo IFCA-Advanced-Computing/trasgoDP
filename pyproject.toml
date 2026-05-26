@@ -36,6 +36,7 @@ numpy = "2.0.2"
 pandas = "2.3.3"
 scipy = "1.15.3"
 typing_extensions = "4.15.0"
+folium = "0.20.0"
 
 
 [tool.poetry.group.dev.dependencies]
