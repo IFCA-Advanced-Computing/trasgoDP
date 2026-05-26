@@ -592,7 +592,7 @@ class TestGeoIndis(unittest.TestCase):
             geoindis.plot_metric_dp_map(
                 data_dp, self.column_lat, "lon", save_file="test_map.html"
             )
-    
+
     def test_plot_map_error_lat(self):
         epsilon = 1
         data_dp = geoindis.metric_privacy(
@@ -602,7 +602,7 @@ class TestGeoIndis(unittest.TestCase):
             geoindis.plot_metric_dp_map(
                 data_dp, "lat", self.column_lon, save_file="test_map.html"
             )
-    
+
     def test_plot_map_error_file(self):
         epsilon = 1
         data_dp = geoindis.metric_privacy(

@@ -147,12 +147,12 @@ def plot_metric_dp_map(df_dp, column_lat, column_lon, save_file="metric_dp_map.h
     """
     if not save_file.endswith(".html"):
         raise ValueError(f"save_file must be a .html file, got {save_file}.")
-    
+
     if column_lat not in df_dp.columns:
         raise ValueError(f"Column '{column_lat}' not found in DataFrame.")
     if column_lon not in df_dp.columns:
         raise ValueError(f"Column '{column_lon}' not found in DataFrame.")
-    
+
     values = df_dp.drop_duplicates(subset=[column_lat, column_lon])
 
     center_lat = values[column_lat].mean()
