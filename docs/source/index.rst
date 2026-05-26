@@ -1,4 +1,4 @@
-.. image:: https://raw.githubusercontent.com/judithspd/trasgodp/main/images/logo_trasgodp.png
+.. image:: https://raw.githubusercontent.com/IFCA-Advanced-Computing/trasgodp/main/images/logo_trasgodp.png
    :align: center
    :width: 500px
 
@@ -6,7 +6,7 @@
 
 Start applying local differential privacy directly to you data in few lines of code.
 
-This Python library allows to apply local differential privacy to a dataset or to an array. It can be applied to categorical attributes (using the Exponential mechanism), or to numerical ones (using the Laplace or Gaussian mechanism).
+This Python library allows to apply local differential privacy to a dataset, list or array. It can be applied to categorical attributes (using the Exponential mechanism), or to numerical ones (using the Laplace or Gaussian mechanism). It also provides metric privacy support based on geo-indistinguishability for location-based data. 
 
 
 User documentation

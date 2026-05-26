@@ -10,6 +10,7 @@ Subpackages
    trasgodp.categorical
    trasgodp.metrics
    trasgodp.numerical
+   trasgodp.geoindis
 
 Module contents
 ---------------
