@@ -74,6 +74,33 @@ epsilon2 = 5
 df = dp_exponential(data, column_cat, epsilon2, new_column=True)
 ```
 
+For applying metric privacy to location data, you need to introduce:
+* The **pandas dataframe** with the data.
+* The column with the latitude data **column_lat** in the dataframe.
+* The column with the longitude data **column_lon** in the dataframe.
+* The **privacy budget (ε)**.
+* Whether or not to create two new columns containing the privatized latitude and longitude coordinates.
+
+**Example: apply metric privacy to the [eathquake dataset]([https://archive.ics.uci.edu/dataset/2/adul](https://www.kaggle.com/datasets/warcoder/earthquake-dataset)t) and plot the map:**
+```python
+import pandas as pd
+from trasgodp.geoindis import metric_privacy, plot_metric_dp_map
+
+# Read the data
+data = pd.read_csv("./examples/earthquake_data.csv")
+column_lat = "latitude"
+column_lon = "longitude"
+
+# Apply metric privacy creating new columns for lat and lon:
+epsilon =1.e-3
+data_priv = metric_privacy(data, column_lat, column_lon, epsilon, new_cols=True)
+
+# Plot and save the map:
+plot_metric_dp_map(data_priv, column_lat, column_lon, save_file="example_map.html")
+```
+[**Example: resulting interactive map**](https://raw.githack.com/IFCA-Advanced-Computing/trasgoDP/main/examples/example_map.html)
+![Map preview](examples/example_map.gif)
+
 ### Warning
 This project is under active development. 
 
