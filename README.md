@@ -9,10 +9,11 @@
 [![Code Coverage](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/.codecov.yml/badge.svg)](https://github.com/IFCA-Advanced-Computing/trasgoDP/actions/workflows/.codecov.yml)
 ![Python version](https://img.shields.io/badge/python-3.10|3.11|3.12|3.13|3.14-blue)
 
-TrasgoDP implements different mechanims for ε-differential privacy and (ε, δ)-differential privacy. The mechanisms are implemented for being used under a local approach, adding noise directly to the raw data. 
+TrasgoDP implements different mechanims for ε-differential privacy (numerical and categorical data), (ε, δ)-differential privacy (numerical data) and metric-privacy (location-based data). The mechanisms are implemented for being used under a local approach, adding noise directly to the raw data. 
 Two types of mechanims are implemented: 
 - For numerical records: _Laplace_ and _Gaussian mechanisms_. The implementation includes a final clipping applyied on the data with DP.
 - For categorical records: _Exponential mechanism_ and _Randomized Response_ (both for binary attributes and the k-ary version).
+- For location-based records: _geo-indistinguishability_ mechanism for metric-privacy.
 
 This library provides dedicated function designed for being applied on both pandas dataframes and lists/numpy arrays. 
 ## Installation
@@ -34,6 +35,7 @@ pip install trasgoDP
 | _Exponential_               | _Categorical_             | `categorical.dp_exponential()`                |
 | _Randomized response_       | _Categorical (binary)_    | `categorical.dp_randomized_response_binary()` |
 | _k-ary randomized response_ | _Categorical_             | `categorical.dp_randomized_response_kary()`   |
+| _Ggeo-indistinguishability_ | _Location_                | `geoindis.metric_privacy()`                   |
 
 ## Getting started
 For applying DP mechanisms to a column of a dataframe you need to introduce:
@@ -81,7 +83,7 @@ For applying metric privacy to location data, you need to introduce:
 * The **privacy budget (ε)**.
 * Whether or not to create two new columns containing the privatized latitude and longitude coordinates.
 
-**Example: apply metric privacy to the [eathquake dataset]([https://archive.ics.uci.edu/dataset/2/adul](https://www.kaggle.com/datasets/warcoder/earthquake-dataset)t) and plot the map:**
+**Example: apply metric privacy to the [earthquake dataset](https://www.kaggle.com/datasets/warcoder/earthquake-dataset) and plot the map:**
 ```python
 import pandas as pd
 from trasgodp.geoindis import metric_privacy, plot_metric_dp_map
