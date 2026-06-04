@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.0.0](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v0.3.3...v1.0.0) (2026-06-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* add new package for geo-indistinguishability
+
+### Features
+
+* add new package for geo-indistinguishability ([57db8a4](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/57db8a41adbf009a5b63d1fb68b2651be8d11276))
+
+
+### Bug Fixes
+
+* check epsilon value ([e5d2274](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/e5d227442bb3986239046352adfd8b0c2cd01c38))
+* fix black ([2b8bd2e](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/2b8bd2e03fdbc33a1ab1db86625079bba642144a))
+* fix geoindis package ([8eb1fed](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/8eb1fed85049064bc04b97e2c71faac406074295))
+
+
+### Documentation
+
+* git add example of the map generated for the metric privacy approach (gif) ([883493c](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/883493c8123fa59bd611a2f629095909d3a71658))
+* update docs with the metric-privacy features ([d424d3e](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/d424d3ef81b4ac03f35ab5e2aac4caccb9e47fb1))
+* update README ([cfcf5c5](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/cfcf5c5fcd85e2e906eddc0516b5147e32e5de51))
+* update README with metric privacy examples ([5e66471](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/5e6647172bd0e164a06b040e1ec1e7c421e59989))
+
 ## [0.3.3](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v0.3.2...v0.3.3) (2026-05-21)
 
 
