@@ -18,6 +18,7 @@ User documentation
    intro
    install
    getting_started
+   metrics
    modules
 
 
