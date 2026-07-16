@@ -160,17 +160,26 @@ def plot_metric_dp_map(df_dp, column_lat, column_lon, save_file="metric_dp_map.h
 
     center_lat = values[column_lat].mean()
     center_lon = values[column_lon].mean()
-    dp_map = folium.Map(location=[center_lat, center_lon], zoom_start=5)
+
+    dp_map = folium.Map(
+        location=[center_lat, center_lon], zoom_start=5, close_popup_on_click=False
+    )
 
     for _, row in values.iterrows():
         # Original point
+        popup_text_original = (
+            f"Original: ({row[column_lat]:.5f}, {row[column_lon]:.5f})"
+        )
+
         folium.CircleMarker(
             location=[row[column_lat], row[column_lon]],
             radius=5,
             color="blue",
             fill=True,
             fill_opacity=0.5,
-            popup=f"Original: ({row[column_lat]:.5f}, {row[column_lon]:.5f})",
+            popup=folium.Popup(
+                popup_text_original, auto_close=False, close_button=True
+            ),
         ).add_to(dp_map)
 
         # Point obtained when adding DP
@@ -184,7 +193,7 @@ def plot_metric_dp_map(df_dp, column_lat, column_lon, save_file="metric_dp_map.h
             color="red",
             fill=True,
             fill_opacity=0.5,
-            popup=popup_text,
+            popup=folium.Popup(popup_text, auto_close=False, close_button=True),
         ).add_to(dp_map)
 
         folium.Circle(
