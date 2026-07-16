@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.1](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v2.0.0...v2.0.1) (2026-07-16)
+
+
+### Bug Fixes
+
+* update plot function ([a712830](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/a712830ed36cf12fcaca2507a5e9024758eb5894))
+
+
+### Documentation
+
+* add details about the privacy-utility trade-off metrics ([923013a](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/923013a12d53c7cce31899b53706eab7f532553b))
+
 ## [2.0.0](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v1.0.0...v2.0.0) (2026-06-04)
 
 
