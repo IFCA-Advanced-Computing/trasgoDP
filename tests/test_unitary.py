@@ -540,17 +540,17 @@ class TestGeoIndis(unittest.TestCase):
             )
 
     def test_error_col_lat(self):
-        epsilon = 1
+        epsilon = 0.01
         with self.assertRaises(ValueError):
             geoindis.metric_privacy(self.data, "lat", "longitude", epsilon)
 
     def test_error_col_lon(self):
-        epsilon = 1
+        epsilon = 0.01
         with self.assertRaises(ValueError):
             geoindis.metric_privacy(self.data, "latitude", "lon", epsilon)
 
     def test_error_lat(self):
-        epsilon = 1
+        epsilon = 0.01
         test_data = pd.DataFrame(
             {"latitude": [134.05, 40.71], "longitude": [120.0, -74.00]}
         )
@@ -558,7 +558,7 @@ class TestGeoIndis(unittest.TestCase):
             geoindis.metric_privacy(test_data, "latitude", "longitude", epsilon)
 
     def test_error_lon(self):
-        epsilon = 1
+        epsilon = 0.01
         test_data = pd.DataFrame(
             {"latitude": [34.05, 40.71], "longitude": [200.0, -74.00]}
         )
@@ -566,32 +566,32 @@ class TestGeoIndis(unittest.TestCase):
             geoindis.metric_privacy(test_data, "latitude", "longitude", epsilon)
 
     def test_output(self):
-        epsilon = 1
+        epsilon = 0.01
         data_dp = geoindis.metric_privacy(
             self.data, self.column_lat, self.column_lon, epsilon
         )
         assert isinstance(data_dp, pd.DataFrame)
 
     def test_output(self):
-        epsilon = 1
+        epsilon = 0.01
         data_dp = geoindis.metric_privacy(
             self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
         )
         assert isinstance(data_dp, pd.DataFrame)
 
     def test_plot_map(self):
-        epsilon = 1
+        epsilon = 0.001
         data_dp = geoindis.metric_privacy(
             self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
         )
         geoindis.plot_metric_dp_map(
-            data_dp, self.column_lat, self.column_lat, save_file="test_map.html"
+            data_dp, self.column_lat, self.column_lon, save_file="test_map.html"
         )
         self.addCleanup(os.remove, "test_map.html")
         assert os.path.exists("test_map.html")
 
     def test_plot_map_error_lon(self):
-        epsilon = 1
+        epsilon = 0.01
         data_dp = geoindis.metric_privacy(
             self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
         )
@@ -601,7 +601,7 @@ class TestGeoIndis(unittest.TestCase):
             )
 
     def test_plot_map_error_lat(self):
-        epsilon = 1
+        epsilon = 0.01
         data_dp = geoindis.metric_privacy(
             self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
         )
@@ -611,7 +611,7 @@ class TestGeoIndis(unittest.TestCase):
             )
 
     def test_plot_map_error_file(self):
-        epsilon = 1
+        epsilon = 0.01
         data_dp = geoindis.metric_privacy(
             self.data, self.column_lat, self.column_lon, epsilon, new_cols=True
         )
