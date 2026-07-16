@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "trasgoDP"
-version = "2.0.0"
+version = "2.0.1"
 description = "Local differential privacy mechanisms"
 authors = [
     "Judith Sáinz-Pardo Díaz <sainzpardo@ifca.unican.es>",
