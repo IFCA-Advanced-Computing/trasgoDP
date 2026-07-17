@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v2.0.1...v2.0.2) (2026-07-17)
+
+
+### Bug Fixes
+
+* update release version to 2.0.2 ([9809c3e](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/9809c3e27272cf673d7a02806189a48e8bcb7b53))
+
 ## [2.0.1](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v2.0.0...v2.0.1) (2026-07-16)
 
 
