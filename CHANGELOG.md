@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.3](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v2.0.2...v2.0.3) (2026-07-20)
+
+
+### Bug Fixes
+
+* upper and lower bounds for numerical attributes non-optional ([365bf5b](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/365bf5b784a02839907ef26bb539713e65fa47bc))
+
+
+### Documentation
+
+* update correlation loss explanation ([73c5341](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/73c5341c5a55e5885d5dc6765b5c37dcfebfed71))
+* update docs ([b77cd0c](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/b77cd0cf8e00614ae15a8976875fd8ec37b71414))
+* update examples ([f9a016d](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/f9a016d9021e7b346e0c60c839f8b7e95677530f))
+
 ## [2.0.2](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v2.0.1...v2.0.2) (2026-07-17)
 
 
