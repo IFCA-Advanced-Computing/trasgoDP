@@ -22,84 +22,134 @@ class TestAdult(unittest.TestCase):
     def test_error_column_laplace(self):
         column = "educatin"
         epsilon = 1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_laplace(self.data, column, epsilon)
+            numerical.dp_clip_laplace(
+                self.data, column, epsilon, lower_bound, upper_bound
+            )
 
     def test_error_type_column_laplace(self):
         column = "education"
         epsilon = 1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_laplace(self.data, column, epsilon)
+            numerical.dp_clip_laplace(
+                self.data, column, epsilon, lower_bound, upper_bound
+            )
 
     def test_output_laplace(self):
         epsilon = 1
         column = "age"
-        data_dp = numerical.dp_clip_laplace(self.data, column, epsilon)
+        lower_bound = 0
+        upper_bound = 100
+        data_dp = numerical.dp_clip_laplace(
+            self.data, column, epsilon, lower_bound, upper_bound
+        )
         assert isinstance(data_dp, pd.DataFrame)
 
     def test_error_epsilon_laplace(self):
         column = "age"
         epsilon = -1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_laplace(self.data, column, epsilon)
+            numerical.dp_clip_laplace(
+                self.data, column, epsilon, lower_bound, upper_bound
+            )
 
     def test_output_laplace_newcolumn(self):
         epsilon = 1
         column = "age"
-        data_dp = numerical.dp_clip_laplace(self.data, column, epsilon, new_column=True)
+        lower_bound = 0
+        upper_bound = 100
+        data_dp = numerical.dp_clip_laplace(
+            self.data, column, epsilon, lower_bound, upper_bound, new_column=True
+        )
         assert isinstance(data_dp, pd.DataFrame)
 
     def test_output_laplace_newcolumn_len(self):
         epsilon = 1
         column = "age"
-        data_dp = numerical.dp_clip_laplace(self.data, column, epsilon, new_column=True)
+        lower_bound = 0
+        upper_bound = 100
+        data_dp = numerical.dp_clip_laplace(
+            self.data, column, epsilon, lower_bound, upper_bound, new_column=True
+        )
         assert len(data_dp.columns) == len(self.data.columns) + 1
 
     def test_error_column_gaussian(self):
         column = "educatin"
         epsilon = 1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_gaussian(self.data, column, epsilon)
+            numerical.dp_clip_gaussian(
+                self.data, column, epsilon, lower_bound, upper_bound
+            )
 
     def test_error_type_column_gaussian(self):
         column = "education"
         epsilon = 1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_gaussian(self.data, column, epsilon)
+            numerical.dp_clip_gaussian(
+                self.data, column, epsilon, lower_bound, upper_bound
+            )
 
     def test_error_epsilon_gaussian(self):
         column = "age"
         epsilon = -1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_gaussian(self.data, column, epsilon)
+            numerical.dp_clip_gaussian(
+                self.data, column, epsilon, lower_bound, upper_bound
+            )
 
     def test_error_delta_gaussian(self):
         column = "age"
         epsilon = 1
         delta = 1.1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_gaussian(self.data, column, epsilon, delta)
+            numerical.dp_clip_gaussian(
+                self.data, column, epsilon, lower_bound, upper_bound, delta
+            )
 
     def test_error_deltaneg_gaussian(self):
         column = "age"
         epsilon = 1
         delta = -1.1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_gaussian(self.data, column, epsilon, delta)
+            numerical.dp_clip_gaussian(
+                self.data, column, epsilon, lower_bound, upper_bound, delta
+            )
 
     def test_output_gaussian(self):
         epsilon = 1
         delta = 1e-5
         column = "age"
-        data_dp = numerical.dp_clip_gaussian(self.data, column, epsilon, delta)
+        lower_bound = 0
+        upper_bound = 100
+        data_dp = numerical.dp_clip_gaussian(
+            self.data, column, epsilon, lower_bound, upper_bound, delta
+        )
         assert isinstance(data_dp, pd.DataFrame)
 
     def test_output_gaussian_newcolumn(self):
         epsilon = 1
         delta = 1e-5
         column = "age"
+        lower_bound = 0
+        upper_bound = 100
         data_dp = numerical.dp_clip_gaussian(
-            self.data, column, epsilon, delta, new_column=True
+            self.data, column, epsilon, lower_bound, upper_bound, delta, new_column=True
         )
         assert isinstance(data_dp, pd.DataFrame)
 
@@ -107,8 +157,10 @@ class TestAdult(unittest.TestCase):
         epsilon = 1
         delta = 1e-5
         column = "age"
+        lower_bound = 0
+        upper_bound = 100
         data_dp = numerical.dp_clip_gaussian(
-            self.data, column, epsilon, delta, new_column=True
+            self.data, column, epsilon, lower_bound, upper_bound, delta, new_column=True
         )
         assert len(data_dp.columns) == len(self.data.columns) + 1
 
@@ -398,67 +450,80 @@ class TestAdult(unittest.TestCase):
     def test_laplace_array_epsilon(self):
         data = np.random.rand(100)
         epsilon = -1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_laplace_array(data, epsilon)
+            numerical.dp_clip_laplace_array(data, epsilon, lower_bound, upper_bound)
 
     def test_laplace_array_type(self):
         data = self.data["education"].values
         epsilon = 1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_laplace_array(data, epsilon)
+            numerical.dp_clip_laplace_array(data, epsilon, lower_bound, upper_bound)
 
     def test_laplace_array_output(self):
         data = self.data["age"].values
         epsilon = 1
-        dp_data = numerical.dp_clip_laplace_array(data, epsilon)
+        lower_bound = 0
+        upper_bound = 100
+        dp_data = numerical.dp_clip_laplace_array(
+            data, epsilon, lower_bound, upper_bound
+        )
         assert isinstance(dp_data, np.ndarray)
-
-    def test_laplace_array_range(self):
-        data = self.data["age"].values
-        epsilon = 1
-        dp_data = numerical.dp_clip_laplace_array(data, epsilon)
-        assert max(dp_data) <= max(data) and min(dp_data) >= min(data)
 
     def test_gaussian_array_epsilon(self):
         data = np.random.rand(100)
         epsilon = -1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_gaussian_array(data, epsilon)
+            numerical.dp_clip_gaussian_array(data, epsilon, lower_bound, upper_bound)
 
     def test_gaussian_array_delta(self):
         data = np.random.rand(100)
         epsilon = 1
         delta = 2
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_gaussian_array(data, epsilon, delta)
+            numerical.dp_clip_gaussian_array(
+                data, epsilon, lower_bound, upper_bound, delta
+            )
 
     def test_gaussian_array_delta_neg(self):
         data = np.random.rand(100)
         epsilon = 1
         delta = -1
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_gaussian_array(data, epsilon, delta)
+            numerical.dp_clip_gaussian_array(
+                data, epsilon, lower_bound, upper_bound, delta
+            )
 
     def test_gaussian_array_type(self):
         data = self.data["education"].values
         epsilon = 1
         delta = 1e-5
+        lower_bound = 0
+        upper_bound = 100
         with self.assertRaises(ValueError):
-            numerical.dp_clip_gaussian_array(data, epsilon, delta)
+            numerical.dp_clip_gaussian_array(
+                data, epsilon, lower_bound, upper_bound, delta
+            )
 
     def test_gaussian_array_output(self):
         data = self.data["age"].values
         epsilon = 1
         delta = 1e-5
-        dp_data = numerical.dp_clip_gaussian_array(data, epsilon, delta)
+        lower_bound = 0
+        upper_bound = 100
+        dp_data = numerical.dp_clip_gaussian_array(
+            data, epsilon, lower_bound, upper_bound, delta
+        )
         assert isinstance(dp_data, np.ndarray)
-
-    def test_gaussian_array_range(self):
-        data = self.data["age"].values
-        epsilon = 1
-        delta = 1e-5
-        dp_data = numerical.dp_clip_gaussian_array(data, epsilon, delta)
-        assert max(dp_data) <= max(data) and min(dp_data) >= min(data)
 
     def test_binary_rr_array_epsilon(self):
         data = self.data["sex"].values

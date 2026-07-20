@@ -26,17 +26,17 @@ def dp_clip_laplace(
     df: pd.DataFrame,
     column: str,
     epsilon: float,
-    lower_bound=None,
-    upper_bound=None,
-    new_column=False,
+    lower_bound: float,
+    upper_bound: float,
+    new_column: bool = False,
 ) -> pd.DataFrame:
     """Apply the Laplace mechanism to a dataframe numeric column and clip the result.
 
     :param df: dataframe with the data under study.
     :type df: pandas dataframe
 
-    :param columm: column to which the DP mechanism will be applied.
-    :type columm: string
+    :param column: column to which the DP mechanism will be applied.
+    :type column: string
 
     :param epsilon: privacy budget.
     :type epsilon: float
@@ -69,11 +69,6 @@ def dp_clip_laplace(
     else:
         raise ValueError("Type of the column not allowed for the Laplace mechanism.")
 
-    if lower_bound is None:
-        lower_bound = min(data.values)
-    if upper_bound is None:
-        upper_bound = max(data.values)
-
     clipped = data.clip(lower_bound, upper_bound)
 
     sensitivity = upper_bound - lower_bound
@@ -97,8 +92,8 @@ def dp_clip_laplace(
 def dp_clip_laplace_array(
     data: typing.Union[typing.List, np.ndarray],
     epsilon: float,
-    lower_bound=None,
-    upper_bound=None,
+    lower_bound: float,
+    upper_bound: float,
 ) -> np.ndarray:
     """Apply the Laplace mechanism to a list or numpy array.
 
@@ -129,11 +124,6 @@ def dp_clip_laplace_array(
         data = data.astype(float)
     else:
         raise ValueError("Type of the column not allowed for the Laplace mechanism.")
-
-    if lower_bound is None:
-        lower_bound = min(data)
-    if upper_bound is None:
-        upper_bound = max(data)
 
     clipped = np.clip(data, lower_bound, upper_bound)
 
