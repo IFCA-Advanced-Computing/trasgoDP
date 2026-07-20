@@ -26,7 +26,9 @@ This first example uses the `adult dataset`_. The idea is to apply local DP, fir
    # Apply DP for the attribute age:
    column_num = "age"
    epsilon1 = 10
-   df_age = dp_clip_laplace(data, column_num, epsilon1, new_column=True)
+   lower_bound = 16
+   upper_bound = 100
+   df_age = dp_clip_laplace(data, column_num, epsilon1, lower_bound, upper_bound, new_column=True)
 
    # Apply DP for the attribute workclass:
    column_cat = "workclass"
@@ -47,7 +49,7 @@ The second example uses the `earthquake dataset`_ for showcasing the use of metr
    column_lon = "longitude"
 
    # Apply metric privacy creating new columns for lat and lon:
-   epsilon =1.e-3
+   epsilon = 1.e-3
    data_priv = metric_privacy(data, column_lat, column_lon, epsilon, new_cols=True)
 
    # Plot and save the map:
