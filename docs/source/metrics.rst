@@ -11,7 +11,7 @@ In order to provide users with metrics to quantify the quality of the noised dat
  
    **Correlation loss (%)**
    
-   1. Be :math:`D \in \mathbb{R}^{n \times d}` the original dataset and :math:`D' \in \mathbb{R}^{n \times d+1}` the privatized one (if one new column transformed with DP), or :math:`D' \in \mathbb{R}^{n \times d}` (if the privatized column has been substituted). Let's assume that :math:`D' \in \mathbb{R}^{n \times d}`. Be :math:`F = \{X_1, \dots, X_f\}` the set of features selected, :math:`f \leq n`.
+   1. Be :math:`D \in \mathbb{R}^{n \times d}` the original dataset and :math:`D' \in \mathbb{R}^{n \times d+1}` the privatized one (if one new column transformed with DP), or :math:`D' \in \mathbb{R}^{n \times d}` (if the privatized column has been substituted). Let's assume that :math:`D' \in \mathbb{R}^{n \times d}`. Be :math:`F = \{X_1, \dots, X_f\}` the set of features selected, :math:`f \leq d`.
     
    2. For each categorical feature :math:`X_j \in F`, we define a function :math:`\phi_j : \mathcal{C}_j \to \mathbb{Z}` with :math:`\mathcal{C}_j` the set of values observed in :math:`D` and :math:`D'`. Then we get the transformed datasets :math:`\tilde{D}` and :math:`\tilde{D}'`.
     
