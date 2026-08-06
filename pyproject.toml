@@ -67,7 +67,7 @@ bandit = "1.9.4"
 
 
 [tool.poetry.group.test-pip-missing-reqs.dependencies]
-pip-check-reqs = "^2.5.3"
+pip-check-reqs = ">=2.5.3,<4.0.0"
 
 
 [tool.poetry.group.test-mypy.dependencies]
@@ -75,7 +75,7 @@ mypy = "2.3.0"
 
 
 [tool.poetry.group.test-pypi.dependencies]
-twine = ">=4.0.2,<7.0.0"
+twine = ">=4.0.2,<8.0.0"
 
 
 [build-system]

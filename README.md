@@ -43,7 +43,7 @@ For applying DP mechanisms to a column of a dataframe you need to introduce:
 * The **column** in the dataframe to be privatized.
 * The **privacy budget (ε)**.
 * The **probability of exceeding the privacy budget (δ)** in case of numerical attributes and the Gaussian mechanism.
-* The **uper and lower bounds** for numerical attributes.
+* The **upper and lower bounds** for numerical attributes.
 
 **Example: apply DP to the [adult dataset](https://archive.ics.uci.edu/dataset/2/adult) with the Laplace mechanism for the column _age_ and the Exponential mechanism for the column _workclass_:**
 ```python
