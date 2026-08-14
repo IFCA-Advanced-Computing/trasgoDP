@@ -35,7 +35,7 @@ pip install trasgoDP
 | _Exponential_               | _Categorical_             | `categorical.dp_exponential()`                |
 | _Randomized response_       | _Categorical (binary)_    | `categorical.dp_randomized_response_binary()` |
 | _k-ary randomized response_ | _Categorical_             | `categorical.dp_randomized_response_kary()`   |
-| _Ggeo-indistinguishability_ | _Location_                | `geoindis.metric_privacy()`                   |
+| _Geo-indistinguishability_ | _Location_                | `geoindis.metric_privacy()`                   |
 
 ## Getting started
 For applying DP mechanisms to a column of a dataframe you need to introduce:
