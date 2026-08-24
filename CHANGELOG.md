@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.4](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v2.0.3...v2.0.4) (2026-08-24)
+
+
+### Bug Fixes
+
+* fix README ([851d796](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/851d79602bd7ef23e70ae44024f3d7a629bb6532))
+
+
+### Documentation
+
+* add example (map por the trip_data.csv first 100 rows privatized) ([c587cda](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/c587cda9d19afff671c906a707864807ea9f3f44))
+* update examples ([d408b6a](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/d408b6a428ae4b2c3476e3c027a6bde71346488a))
+* update examples ([2e9f0b8](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/2e9f0b88593b58630f872a0d1d8e5f6ac8c50268))
+
 ## [2.0.3](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v2.0.2...v2.0.3) (2026-07-20)
 
 
