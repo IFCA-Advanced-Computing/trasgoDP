@@ -40,7 +40,7 @@ folium = "0.20.0"
 
 
 [tool.poetry.group.dev.dependencies]
-tox = "4.55.1"
+tox = "4.60.1"
 
 
 [tool.poetry.group.test.dependencies]
