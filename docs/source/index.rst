@@ -50,4 +50,4 @@ Indices and tables
    :target: https://github.com/judithspd/trasgodp/actions/workflows/cicd.yml
 .. |Code Coverage| image:: https://github.com/judithspd/trasgodp/actions/workflows/.codecov.yml/badge.svg
    :target: https://github.com/judithspd/trasgodp/actions/workflows/.codecov.yml
-.. |Python version| image:: https://img.shields.io/badge/python-3.10|3.11|3.12|3.13|3.14-blue
+.. |Python version| image:: https://img.shields.io/badge/python-3.10|3.11|3.12|3.13-blue
