@@ -7,7 +7,7 @@
 [![Publish Package in PyPI](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/pypi.yml/badge.svg)](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/pypi.yml)
 [![CI/CD Pipeline](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/cicd.yml/badge.svg)](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/cicd.yml)
 [![Code Coverage](https://github.com/IFCA-Advanced-Computing/trasgodp/actions/workflows/.codecov.yml/badge.svg)](https://github.com/IFCA-Advanced-Computing/trasgoDP/actions/workflows/.codecov.yml)
-![Python version](https://img.shields.io/badge/python-3.10|3.11|3.12|3.13|3.14-blue)
+![Python version](https://img.shields.io/badge/python-3.10|3.11|3.12|3.13-blue)
 
 TrasgoDP implements different mechanims for ε-differential privacy (numerical and categorical data), (ε, δ)-differential privacy (numerical data) and metric-privacy (location-based data). The mechanisms are implemented for being used under a local approach, adding noise directly to the raw data. 
 Two types of mechanims are implemented: 
