@@ -109,6 +109,16 @@ class TestAdult(unittest.TestCase):
                 self.data, column, epsilon, lower_bound, upper_bound
             )
 
+    def test_error_epsilon_gaussian_gt_one(self):
+        column = "age"
+        epsilon = 1.1
+        lower_bound = 0
+        upper_bound = 100
+        with self.assertRaises(ValueError):
+            numerical.dp_clip_gaussian(
+                self.data, column, epsilon, lower_bound, upper_bound
+            )
+
     def test_error_delta_gaussian(self):
         column = "age"
         epsilon = 1
@@ -476,6 +486,14 @@ class TestAdult(unittest.TestCase):
     def test_gaussian_array_epsilon(self):
         data = np.random.rand(100)
         epsilon = -1
+        lower_bound = 0
+        upper_bound = 100
+        with self.assertRaises(ValueError):
+            numerical.dp_clip_gaussian_array(data, epsilon, lower_bound, upper_bound)
+
+    def test_gaussian_array_epsilon_gt_one(self):
+        data = np.random.rand(100)
+        epsilon = 1.1
         lower_bound = 0
         upper_bound = 100
         with self.assertRaises(ValueError):

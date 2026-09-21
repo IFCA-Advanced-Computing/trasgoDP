@@ -78,7 +78,7 @@ def dp_clip_laplace(
     dp_column = clipped + noise
 
     if np.issubdtype(df[column].dtype, np.integer):
-        dp_column = round(dp_column, 0).astype(int)
+        dp_column = np.round(dp_column, 0).astype(int)
 
     dp_column = np.clip(dp_column, lower_bound, upper_bound)
     if new_column:

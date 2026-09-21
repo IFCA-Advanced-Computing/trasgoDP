@@ -47,7 +47,7 @@ def dp_exponential(
     :return: dataframe with the column transformed applying the mechanism.
     :rtype: pandas dataframe.
     """
-    df = copy.deepcopy(df)
+    df = df.copy()
     if column not in df.keys():
         raise ValueError("Column: {column} not in the dataframe.")
 
@@ -61,11 +61,7 @@ def dp_exponential(
 
     categories = np.unique(df[column].values)
 
-    dp_column = []
-    for i in range(len(df)):
-        original_value = df[column].iloc[i]
-        dp_value = _probability_exp(original_value, categories, epsilon)
-        dp_column.append(dp_value)
+    dp_column = _sample_exponential(df[column].values, categories, epsilon)
 
     if new_column:
         df[f"dp_{column}"] = dp_column
@@ -103,29 +99,41 @@ def dp_exponential_array(
 
     categories = np.unique(data)
 
-    dp_array = []
-    for original_value in data:
-        dp_value = _probability_exp(original_value, categories, epsilon)
-        dp_array.append(dp_value)
-
-    return np.array(dp_array)
+    return _sample_exponential(data, categories, epsilon)
 
 
-def _probability_exp(value, categories, epsilon):
-    """
-    Probability of the output of the Exponential mechanism.
+def _sample_exponential(values, categories, epsilon):
+    """Vectorized sampling from the Exponential mechanism distribution.
 
-    :param value: current value
-    :type value: str
+    For a value ``v``, the mechanism reports ``v`` with probability
+    ``p_keep = e^(epsilon/2) / (e^(epsilon/2) + k - 1)`` and each of the
+    other ``k - 1`` categories with probability
+    ``1 / (e^(epsilon/2) + k - 1)``, which matches the original
+    per-row score-based sampling.
 
-    :param categories: possible values of the data
-    :type categories: list of strings
+    :param values: array of the original categorical values.
+    :type values: numpy array
+
+    :param categories: possible values of the data.
+    :type categories: numpy array of strings
 
     :param epsilon: privacy budget.
     :type epsilon: float
     """
-    sensitivity = 1
-    scores = np.array([1 if value == c else 0 for c in categories])
-    exp_scores = np.exp((epsilon * scores) / 2 * sensitivity)
-    probs = exp_scores / sum(exp_scores)
-    return np.random.choice(categories, p=probs)
+    n = len(values)
+    k = len(categories)
+    e_half = np.exp(epsilon / 2)
+    p_keep = e_half / (e_half + k - 1)
+
+    keep_mask = np.random.rand(n) < p_keep
+
+    # Position of each value inside the sorted `categories` array.
+    unique_vals, inverse = np.unique(values, return_inverse=True)
+    pos = np.searchsorted(categories, unique_vals)[inverse]
+
+    # Uniform offset in {0, ..., k - 2} so the replaced value is uniform
+    # over every category except the original one.
+    offset = np.random.randint(0, max(k - 1, 1), size=n)
+    replaced_pos = (pos + 1 + offset) % k
+
+    return np.where(keep_mask, values, categories[replaced_pos])

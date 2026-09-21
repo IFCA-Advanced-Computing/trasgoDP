@@ -18,7 +18,6 @@
 
 import numpy as np
 import pandas as pd
-import scipy
 import copy
 import typing
 
@@ -53,7 +52,7 @@ def dp_randomized_response_binary(
     :return: dataframe with the column transformed applying the mechanism.
     :rtype: pandas dataframe.
     """
-    df = copy.deepcopy(df)
+    df = df.copy()
     if column not in df.keys():
         raise ValueError("Column: {column} not in the dataframe.")
 
@@ -76,17 +75,13 @@ def dp_randomized_response_binary(
         negative_label = categories[categories != positive_label][0]
 
     data = df[column].values
-    data_binary = [1 if v == positive_label else 0 for v in data]
+    data_binary = (data == positive_label).astype(np.int8)
 
     p = np.exp(epsilon) / (np.exp(epsilon) + 1)
-    _dp_column = []
-    for value in data_binary:
-        if np.random.rand() < p:
-            _dp_column.append(value)
-        else:
-            _dp_column.append(int(np.abs(value - 1)))
+    flip_mask = np.random.rand(len(data)) >= p
+    data_binary[flip_mask] = 1 - data_binary[flip_mask]
 
-    dp_column = [positive_label if v == 1 else negative_label for v in _dp_column]
+    dp_column = np.where(data_binary == 1, positive_label, negative_label)
 
     if new_column:
         df[f"dp_{column}"] = dp_column
@@ -137,19 +132,15 @@ def dp_randomized_response_binary_array(
             raise ValueError("Positive label is not a value in the column.")
         negative_label = categories[categories != positive_label][0]
 
-    data_binary = [1 if v == positive_label else 0 for v in data]
+    data_binary = (data == positive_label).astype(np.int8)
 
     p = np.exp(epsilon) / (np.exp(epsilon) + 1)
-    _dp_array = []
-    for value in data_binary:
-        if np.random.rand() < p:
-            _dp_array.append(value)
-        else:
-            _dp_array.append(int(np.abs(value - 1)))
+    flip_mask = np.random.rand(len(data)) >= p
+    data_binary[flip_mask] = 1 - data_binary[flip_mask]
 
-    dp_array = [positive_label if v == 1 else negative_label for v in _dp_array]
+    dp_array = np.where(data_binary == 1, positive_label, negative_label)
 
-    return np.array(dp_array)
+    return dp_array
 
 
 def dp_randomized_response_kary(
@@ -177,7 +168,7 @@ def dp_randomized_response_kary(
     :return: dataframe with the column transformed applying the mechanism.
     :rtype: pandas dataframe.
     """
-    df = copy.deepcopy(df)
+    df = df.copy()
     if column not in df.keys():
         raise ValueError("Column: {column} not in the dataframe.")
 
@@ -195,14 +186,9 @@ def dp_randomized_response_kary(
     data = df[column].values
 
     p_b = k / (np.exp(epsilon) + k - 1)
-    dp_column = []
-    for value in data:
-        b = scipy.stats.bernoulli.rvs(p_b)
-        if b == 0:
-            dp_column.append(value)
-        else:
-            id_k = scipy.stats.uniform.rvs(loc=0, scale=k)
-            dp_column.append(categories[int(id_k)])
+    flip_mask = np.random.rand(len(data)) < p_b
+    replaced = categories[np.random.randint(0, k, size=len(data))]
+    dp_column = np.where(flip_mask, replaced, data)
 
     if new_column:
         df[f"dp_{column}"] = dp_column
@@ -246,13 +232,8 @@ def dp_randomized_response_kary_array(
         raise ValueError("The privacy budget must be greater than 0.")
 
     p_b = k / (np.exp(epsilon) + k - 1)
-    dp_array = []
-    for value in data:
-        b = scipy.stats.bernoulli.rvs(p_b)
-        if b == 0:
-            dp_array.append(value)
-        else:
-            id_k = scipy.stats.uniform.rvs(loc=0, scale=k)
-            dp_array.append(categories[int(id_k)])
+    flip_mask = np.random.rand(len(data)) < p_b
+    replaced = categories[np.random.randint(0, k, size=len(data))]
+    dp_array = np.where(flip_mask, replaced, data)
 
-    return np.array(dp_array)
+    return dp_array

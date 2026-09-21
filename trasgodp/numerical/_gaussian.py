@@ -66,6 +66,9 @@ def dp_clip_gaussian(
     if epsilon <= 0:
         raise ValueError("The privacy budget must be greater than 0.")
 
+    if epsilon > 1:
+        raise ValueError("The privacy budget for the Gaussian mechanism must be <= 1.")
+
     if delta <= 0 or delta >= 1:
         raise ValueError("The value of delta must be between 0 and 1.")
 
@@ -84,7 +87,7 @@ def dp_clip_gaussian(
 
     dp_column = clipped + noise
     if np.issubdtype(df[column].dtype, np.integer):
-        dp_column = round(dp_column, 0).astype(int)
+        dp_column = np.round(dp_column, 0).astype(int)
 
     dp_column = np.clip(dp_column, lower_bound, upper_bound)
     if new_column:
@@ -124,6 +127,9 @@ def dp_clip_gaussian_array(
     """
     if epsilon <= 0:
         raise ValueError("The privacy budget must be greater than 0.")
+
+    if epsilon > 1:
+        raise ValueError("The privacy budget for the Gaussian mechanism must be <= 1.")
 
     if delta <= 0 or delta >= 1:
         raise ValueError("The value of delta must be between 0 and 1.")
