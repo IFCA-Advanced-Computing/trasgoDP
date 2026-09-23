@@ -67,17 +67,18 @@ def correlation_loss(
     if method not in ["pearson", "kendall", "spearman"]:
         raise ValueError("Method not allowed for calculating the correlation.")
 
+    if threshold <= 0:
+        raise ValueError("The threshold must be greater than 0.")
+
+    n_row = len(df_original)
     if method in ["pearson", "spearman"]:
         if len(df_original) < 4:
             raise ValueError("The number of samples must be greater than 3.")
-        se = 1 / np.sqrt(len(df_original) - 3)
+        se = 1 / np.sqrt(n_row - 3)
         if method == "spearman":
             se *= 1.06
     else:
-        se = np.sqrt(
-            (4 * len(df_original) + 10)
-            / (9 * len(df_original) * (len(df_original) - 1))
-        )
+        se = np.sqrt((4 * n_row + 10) / (9 * n_row * n_row - 1))
 
     if new_column:
         new_features = []
