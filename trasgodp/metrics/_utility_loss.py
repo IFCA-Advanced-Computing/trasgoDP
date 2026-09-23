@@ -29,6 +29,7 @@ def correlation_loss(
     features: typing.Optional[typing.List[str]] = None,
     method: str = "pearson",
     new_column: bool = False,
+    threlshold: float = 1.96,
 ) -> float:
     """Compute utility loss (%) based on the preservation of the correlation.
 
@@ -49,6 +50,10 @@ def correlation_loss(
         the original dataset.
     :type  new_column: boolean
 
+    :param threlshold: threshold for the correlation. By default set to 1.96
+        (95% confidence interval).
+    :type threlshold: float
+
     :return: utlity loss (%) comparing the difference between correlations.
     :rtype: float
     """
@@ -61,6 +66,18 @@ def correlation_loss(
 
     if method not in ["pearson", "kendall", "spearman"]:
         raise ValueError("Method not allowed for calculating the correlation.")
+
+    if method in ["pearson", "spearman"]:
+        if len(df_original) < 4:
+            raise ValueError("The number of samples must be greater than 3.")
+        se = 1 / np.sqrt(len(df_original) - 3)
+        if method == "spearman":
+            se *= 1.06
+    else:
+        se = np.sqrt(
+            (4 * len(df_original) + 10)
+            / (9 * len(df_original) * (len(df_original) - 1))
+        )
 
     if new_column:
         new_features = []
@@ -98,8 +115,14 @@ def correlation_loss(
     corr_dp = corr_dp[mask]
 
     diff = np.abs(corr_original - corr_dp)
+    mu_r = np.mean(np.abs(corr_original))
+    if mu_r < threlshold * se:
+        raise ValueError(
+            "The correlation is too low to compute the utility loss."
+            "Please use a different method or check the divergence distributions instead."
+        )
 
-    return 100 * np.mean(diff) / np.mean(np.abs(corr_original))
+    return 100 * np.mean(diff) / mu_r
 
 
 def divergence_distributions(
