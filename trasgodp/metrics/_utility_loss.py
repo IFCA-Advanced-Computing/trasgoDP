@@ -116,11 +116,11 @@ def correlation_loss(
 
     diff = np.abs(corr_original - corr_dp)
     mu_r = np.mean(np.abs(corr_original))
-    
+
     if mu_r < threshold * se:
         raise ValueError(
             "The correlation is too low to compute the utility loss."
-            "Please use a different method or check the divergence distributions instead."
+            "Please use a different method or get the divergence distributions instead."
         )
 
     return 100 * np.mean(diff) / mu_r

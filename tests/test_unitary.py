@@ -371,16 +371,16 @@ class TestAdult(unittest.TestCase):
             metrics.correlation_loss(self.data, data_dp, features, new_column=True)
 
     def test_categorical_corr(self):
-            epsilon = 1
-            column = "workclass"
-            data_dp = categorical.dp_randomized_response_kary(
-                self.data, column, epsilon, new_column=True
-            )
-            features = ["workclass", "sex"]
-            assert isinstance(
-                metrics.correlation_loss(self.data, data_dp, features, new_column=True),
-                float,
-            )
+        epsilon = 1
+        column = "workclass"
+        data_dp = categorical.dp_randomized_response_kary(
+            self.data, column, epsilon, new_column=True
+        )
+        features = ["workclass", "sex"]
+        assert isinstance(
+            metrics.correlation_loss(self.data, data_dp, features, new_column=True),
+            float,
+        )
 
     def test_num_corr(self):
         epsilon = 1
