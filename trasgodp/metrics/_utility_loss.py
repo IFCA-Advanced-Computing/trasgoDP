@@ -29,7 +29,7 @@ def correlation_loss(
     features: typing.Optional[typing.List[str]] = None,
     method: str = "pearson",
     new_column: bool = False,
-    threlshold: float = 1.96,
+    threshold: float = 1.96,
 ) -> float:
     """Compute utility loss (%) based on the preservation of the correlation.
 
@@ -50,9 +50,9 @@ def correlation_loss(
         the original dataset.
     :type  new_column: boolean
 
-    :param threlshold: threshold for the correlation. By default set to 1.96
+    :param threshold: threshold for the correlation. By default set to 1.96
         (95% confidence interval).
-    :type threlshold: float
+    :type threshold: float
 
     :return: utlity loss (%) comparing the difference between correlations.
     :rtype: float
@@ -116,7 +116,8 @@ def correlation_loss(
 
     diff = np.abs(corr_original - corr_dp)
     mu_r = np.mean(np.abs(corr_original))
-    if mu_r < threlshold * se:
+    
+    if mu_r < threshold * se:
         raise ValueError(
             "The correlation is too low to compute the utility loss."
             "Please use a different method or check the divergence distributions instead."
