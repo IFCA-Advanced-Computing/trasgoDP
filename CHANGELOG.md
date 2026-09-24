@@ -1,5 +1,37 @@
 # Changelog
 
+## [2.1.0](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v2.0.3...v2.1.0) (2026-09-24)
+
+
+### Features
+
+* update utility loss (correlation) metric for checking the inestability given a threshold ([9978592](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/997859235b9a591cfcd20e21aea7a639f52107ad))
+
+
+### Bug Fixes
+
+* fix black and flake8 ([4b904c6](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/4b904c659e690a35f815e283cf03d07dd1528bf6))
+* fix flake8 ([59b9b97](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/59b9b971e19ef6f500acb7b00804f7b2586c52f1))
+* fix flake8 ([b69b959](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/b69b959b6c7c602ffb8725bdff6fd3d3903feafc))
+* fix flake8 ([9b7e8a5](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/9b7e8a57e25dab5cb8eb6e5ebd20a3991d409bee))
+* fix README ([851d796](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/851d79602bd7ef23e70ae44024f3d7a629bb6532))
+* remove Python 14 from tox environment list ([4fab03e](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/4fab03ec4502c43057358f3ca85541e6ea0c1950))
+* remove Python 3.14 test environment ([0b46580](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/0b4658031898379a1d3431406666b76c67b2f220))
+* update etst for the utility loss, and update function ([8201ee5](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/8201ee591da6ce4949c09a4e22a87b987ab5c7d8))
+* update exponential mechanism dependencies ([49c1763](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/49c1763014e973fe8d46649cb16057001b6356b8))
+* update mechanisms and tests ([8b1ef43](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/8b1ef431ba9d92e2c241cbcce963c8f86c2e3937))
+* update testing environments in cicd.yml ([3c6d1c6](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/3c6d1c6567f10c834587278338020e1efb8aae08))
+* update utility loss ([4d5892f](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/4d5892ffe7916cf7555e5625811c3f4bbf66115c))
+* update utility loss function ([537b44b](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/537b44ba0be7d0d90d33a3c8e672101070b487f7))
+
+
+### Documentation
+
+* add example (map por the trip_data.csv first 100 rows privatized) ([c587cda](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/c587cda9d19afff671c906a707864807ea9f3f44))
+* update examples ([d408b6a](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/d408b6a428ae4b2c3476e3c027a6bde71346488a))
+* update examples ([2e9f0b8](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/2e9f0b88593b58630f872a0d1d8e5f6ac8c50268))
+* update Python version badge to exclude 3.14 ([d49f9f2](https://github.com/IFCA-Advanced-Computing/trasgoDP/commit/d49f9f28dda3f26cd1e9bd71203ef7dc4d381bbb))
+
 ## [2.0.3](https://github.com/IFCA-Advanced-Computing/trasgoDP/compare/v2.0.2...v2.0.3) (2026-07-20)
 
 
