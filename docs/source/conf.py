@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath("./../../"))
 project = "trasgoDP"
 copyright = "2026, Spanish National Research Council (CSIC)"
 author = "Judith Sáinz-Pardo Díaz (CSIC)"
-release = "2.0.4"
+release = "2.1.0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
