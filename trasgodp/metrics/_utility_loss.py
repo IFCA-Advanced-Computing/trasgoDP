@@ -76,9 +76,9 @@ def correlation_loss(
             raise ValueError("The number of samples must be greater than 3.")
         se = 1 / np.sqrt(n_row - 3)
         if method == "spearman":
-            se *= 1.06
+            se *= np.sqrt(1.06)
     else:
-        se = np.sqrt((4 * n_row + 10) / (9 * n_row * n_row - 1))
+        se = np.sqrt((4 * n_row + 10) / (9 * n_row * (n_row - 1)))
 
     if new_column:
         new_features = []
