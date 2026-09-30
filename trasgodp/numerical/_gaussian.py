@@ -67,7 +67,10 @@ def dp_clip_gaussian(
         raise ValueError("The privacy budget must be greater than 0.")
 
     if epsilon > 1:
-        raise ValueError("The privacy budget for the Gaussian mechanism must be <= 1.")
+        raise ValueError(
+            "The privacy budget for the Gaussian mechanism must be <= 1. "
+            "Use the Laplace mechanism instead for epsilon > 1."
+        )
 
     if delta <= 0 or delta >= 1:
         raise ValueError("The value of delta must be between 0 and 1.")
