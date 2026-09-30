@@ -16,4 +16,4 @@
 
 """Local differential privacy applied to the columns of a dataset."""
 
-__version__ = "2.0.4"
+__version__ = "2.1.0"
