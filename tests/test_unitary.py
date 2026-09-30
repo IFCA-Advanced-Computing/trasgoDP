@@ -394,7 +394,7 @@ class TestAdult(unittest.TestCase):
             float,
         )
 
-    def test_num_corr_error_thr(self):
+    def test_num_corr_error_conf(self):
         epsilon = 1
         column = "workclass"
         data_dp = categorical.dp_randomized_response_kary(
@@ -403,7 +403,7 @@ class TestAdult(unittest.TestCase):
         features = ["age", "education-num"]
         with self.assertRaises(ValueError):
             metrics.correlation_loss(
-                self.data, data_dp, features, new_column=True, threshold=-1
+                self.data, data_dp, features, new_column=True, confidence=-1
             )
 
     def test_num_cat_corr(self):
