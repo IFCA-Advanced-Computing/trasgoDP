@@ -50,7 +50,7 @@ def correlation_loss(
         the original dataset.
     :type  new_column: boolean
 
-    :param confidence: confidence factor for the correlation. By default set to 1.96 (95%).
+    :param confidence: confidence factor for the correlation. Default: 1.96 (95%).
     :type confidence: float
 
     :return: utlity loss (%) comparing the difference between correlations.
